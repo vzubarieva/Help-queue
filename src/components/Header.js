@@ -1,7 +1,12 @@
 import React from "react";
+import ticketsImage from "./../img/tickets.png";
 
 function Header() {
-  return <h1>Help Queue</h1>;
+  return (
+    <React.Fragment>
+      <img src={ticketsImage} alt="tickets" />
+    </React.Fragment>
+  );
 }
 
 export default Header;
