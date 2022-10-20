@@ -13,6 +13,8 @@ function TicketDetail(props) {
       <p>
         <em>{ticket.issue}</em>
       </p>
+      <button onClick={props.onClickingEdit}>Update Ticket</button>{" "}
+      {/* new code */}
       <button onClick={() => onClickingDelete(ticket.id)}>Close Ticket</button>
       <hr />
     </React.Fragment>
@@ -22,6 +24,7 @@ function TicketDetail(props) {
 TicketDetail.propTypes = {
   ticket: PropTypes.object,
   onClickingDelete: PropTypes.func,
+  onClickingEdit: PropTypes.func,
 };
 
 export default TicketDetail;
