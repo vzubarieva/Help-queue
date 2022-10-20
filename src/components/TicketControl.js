@@ -8,7 +8,7 @@ class TicketControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false, // tate slice determines whether or not a form should show on the page. It is local state.
+      formVisibleOnPage: false, // state slice determines whether or not a form should show on the page. It is local state.
       mainTicketList: [], //  second state slice holds the list of all tickets. It is shared state.
       selectedTicket: null, //third state slice will determine whether our TicketDetail component should show or not
       editing: false,
