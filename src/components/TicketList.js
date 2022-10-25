@@ -21,11 +21,11 @@ import PropTypes from "prop-types";
 // ];
 
 function TicketList(props) {
-  // Add props as parameter.
   return (
     <React.Fragment>
       <hr />
-      {props.ticketList.map((ticket) => (
+      {/* We now need to map over the values of an object, not an array. */}
+      {Object.values(props.ticketList).map((ticket) => (
         <Ticket
           whenTicketClicked={props.onTicketSelection}
           names={ticket.names}
@@ -41,7 +41,7 @@ function TicketList(props) {
 
 // Add propTypes for ticketList.
 TicketList.propTypes = {
-  ticketList: PropTypes.array,
+  ticketList: PropTypes.object,
   onTicketSelection: PropTypes.func,
 };
 
