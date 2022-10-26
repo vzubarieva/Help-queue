@@ -11,12 +11,11 @@ class TicketControl extends React.Component {
     super(props);
     console.log(props);
     this.state = {
-      formVisibleOnPage: false, // state slice determines whether or not a form should show on the page. It is local state.
+      // formVisibleOnPage: false, // state slice determines whether or not a form should show on the page. It is local state.
       // mainTicketList: [], //  second state slice holds the list of all tickets. It is shared state.
       selectedTicket: null, //third state slice will determine whether our TicketDetail component should show or not
       editing: false,
     };
-    this.handleClick = this.handleClick.bind(this); //new code here
   }
 
   handleAddingNewTicketToList = (newTicket) => {
@@ -30,7 +29,11 @@ class TicketControl extends React.Component {
       issue: issue,
     };
     dispatch(action);
-    this.setState({ formVisibleOnPage: false });
+    const action2 = {
+      type: "TOGGLE_FORM",
+    };
+    dispatch(action2);
+    // this.setState({ formVisibleOnPage: false });
   };
 
   handleChangingSelectedTicket = (id) => {
@@ -41,14 +44,19 @@ class TicketControl extends React.Component {
   handleClick = () => {
     if (this.state.selectedTicket != null) {
       this.setState({
-        formVisibleOnPage: false,
+        // formVisibleOnPage: false,
         selectedTicket: null,
         editing: false,
       });
     } else {
-      this.setState((prevState) => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage,
-      }));
+      const { dispatch } = this.props;
+      const action = {
+        type: "TOGGLE_FORM",
+      };
+      dispatch(action);
+      // this.setState((prevState) => ({
+      // formVisibleOnPage: !prevState.formVisibleOnPage,
+      // }));
     }
   };
 
@@ -108,7 +116,7 @@ class TicketControl extends React.Component {
 
       buttonText = "Return to Ticket List";
       // While our TicketDetail component only takes placeholder data, we will eventually be passing the value of selectedTicket as a prop.
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = (
         <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList} />
       );
@@ -135,11 +143,13 @@ class TicketControl extends React.Component {
 
 TicketControl.propTypes = {
   mainTicketList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {
   return {
-    mainTicketList: state,
+    mainTicketList: state.mainTicketList,
+    formVisibleOnPage: state.formVisibleOnPage,
   };
 };
 TicketControl = connect(mapStateToProps)(TicketControl);
