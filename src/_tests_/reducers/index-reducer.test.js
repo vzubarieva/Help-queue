@@ -1,8 +1,9 @@
 import rootReducer from "../../reducers/index";
 import { createStore } from "redux";
+// import { ADD_TICKET } from "../../actions/ActionTypes";
 import formVisibleReducer from "../../reducers/form-visible-reducer";
 import ticketListReducer from "../../reducers/ticket-list-reducer";
-import * as c from "./../actions/ActionTypes";
+import * as c from "./../../actions/ActionTypes";
 
 let store = createStore(rootReducer);
 
@@ -27,9 +28,9 @@ describe("rootReducer", () => {
   test("Check that ADD_TICKET action works for ticketListReducer and root reducer", () => {
     const action = {
       type: c.ADD_TICKET,
-      names: "Ryan & Aimen",
-      location: "4b",
-      issue: "Redux action is not working correctly.",
+      names: "Jo and Jasmine",
+      location: "3E",
+      issue: "Redux not working!",
       id: 1,
     };
     store.dispatch(action);
